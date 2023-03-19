@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">LearningLanguages1.0</string>
+    <!-- Start -->
+    <string name="welcome">Добро пожаловать</string>
+    <string name="teach">Учить</string>
+    <string name="addStart">Добавить</string>
+    <string name="settings">Настройки</string>
+    <string name="exit">Выход</string>
+    <!-- Teach -->
+    <string name="translationTeach">Перевод</string>
+    <string name="spelling">Правописание</string>
+    <string name="start">Начать</string>
+    //Todo
+    <!-- Add -->
+    <string name="difficultyLevel">Уровень сложности</string>
+    <string name="word">Слово</string>
+    <string name="translationAdd">Перевод</string>
+    <string name="language">Язык</string>
+    <string name="addAdd">Добавить</string>
+    <string name="addWord">Добавить слово</string>
+
+</resources>
