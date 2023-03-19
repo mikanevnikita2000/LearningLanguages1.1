@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class AddFragment extends Fragment {
                 words.word = wordAdd.getText().toString();
                 words.translation = translationAdd.getText().toString();
                 words.language = languageAdd.getText().toString();
+                Log.i("Words", ":" + words);
                 addItem(words);
                 updateItem(words);
             }
