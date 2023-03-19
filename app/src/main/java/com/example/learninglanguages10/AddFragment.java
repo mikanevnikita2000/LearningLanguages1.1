@@ -30,9 +30,6 @@ public class AddFragment extends Fragment {
 
 
 
-    public AddFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

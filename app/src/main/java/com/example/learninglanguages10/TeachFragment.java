@@ -23,7 +23,6 @@ public class TeachFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View viewReturn = inflater.inflate(R.layout.fragment_teach, container, false);
 
         return viewReturn;
