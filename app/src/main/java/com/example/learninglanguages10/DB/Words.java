@@ -8,19 +8,19 @@ import androidx.room.PrimaryKey;
 public class Words {
 
     @PrimaryKey(autoGenerate = true)
-    public Integer id;
+    Integer id;
 
     @ColumnInfo(name = "word")
-    public String word;
+    String word;
 
     @ColumnInfo(name = "translation")
-    public String translation;
+    String translation;
 
     @ColumnInfo(name = "language")
-    public String language;
+    String language;
 
     @ColumnInfo(name = "level")
-    public String level;
+    String level;
 
     public long getId() {
         return id;
@@ -57,13 +57,13 @@ public class Words {
         this.level = level;
     }
 
-//    public static Words generateWord(String level, String word, String translation, String language)
-//    {
-//        Words words = new Words();
-//        words.word = word;
-//        words.translation = translation;
-//        words.language = language;
-//        words.level = level;
-//        return words;
-//    }
+    public static Words generateWord(String level, String word, String translation, String language)
+    {
+        Words words = new Words();
+        words.word = word;
+        words.translation = translation;
+        words.language = language;
+        words.level = level;
+        return words;
+    }
 }

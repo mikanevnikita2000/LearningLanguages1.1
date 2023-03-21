@@ -1,5 +1,7 @@
 package com.example.learninglanguages10;
 
+import static com.example.learninglanguages10.DB.Words.generateWord;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
@@ -15,18 +17,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.learninglanguages10.DB.AppDB;
+import com.example.learninglanguages10.DB.AppDatabase;
 import com.example.learninglanguages10.DB.Words;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddFragment extends Fragment {
 
     EditText levelAdd, wordAdd, translationAdd, languageAdd;
     Button buttonAdd;
-    List<Words> list = new ArrayList<>();
-    private AppDB database;
 
 
 
@@ -43,7 +41,7 @@ public class AddFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View viewReturn = inflater.inflate(R.layout.fragment_add, container, false);
-        initDB();
+
         levelAdd = (EditText) viewReturn.findViewById(R.id.levelAdd);
         wordAdd = (EditText) viewReturn.findViewById(R.id.word);
         translationAdd = (EditText) viewReturn.findViewById(R.id.translationAdd);
@@ -53,31 +51,23 @@ public class AddFragment extends Fragment {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Words words = new Words();
-                words.level = levelAdd.getText().toString();
-                words.word = wordAdd.getText().toString();
-                words.translation = translationAdd.getText().toString();
-                words.language = languageAdd.getText().toString();
-                Log.i("Words", ":" + words);
+                Words words = generateWord(levelAdd.getText().toString(), wordAdd.getText().toString(), translationAdd.getText().toString(), languageAdd.getText().toString());
+                Log.d("Words", "create a new word:" + words.getLevel() + "|" + words.getWord() + "|" + words.getLanguage() + "|" + words.getTranslation());
                 addItem(words);
-                updateItem(words);
+                //updateItem(words);
             }
         });
         return viewReturn;
     }
 
-    private void initDB() {
-        database = Room.databaseBuilder(getContext(),
-                        AppDB.class, "words")
-                .fallbackToDestructiveMigration()
-                .build();
-    }
+
 
     public void addItem(Words words){
-        list.add(words);
         Thread thread = new Thread(new Runnable() {
             public void run() {
-                database.wordsDao().insert(words);
+                Log.d("DB", "add a new word to DB:" + words.getLevel() + "|" + words.getWord() + "|" + words.getLanguage() + "|" + words.getTranslation());
+                AppDatabase.getInstance(getContext()).wordsDao().insert(words);
+                Log.d("DB", "Table dump");
             }
         });
         thread.start();
@@ -86,7 +76,7 @@ public class AddFragment extends Fragment {
     private void updateItem(Words words){
         Thread thread = new Thread(new Runnable() {
             public void run() {
-                database.wordsDao().update(words);
+                AppDatabase.getInstance(getContext()).wordsDao().update(words);
             }
         });
         thread.start();
