@@ -17,10 +17,10 @@ public interface WordsDao {
     List<Words> getAll();
 
     @Query("SELECT language FROM words")
-    List<String> getLanguage();
+    List<Words> getLanguage();
 
     @Query("SELECT level FROM words")
-    List<String> getLevel();
+    List<Words> getLevel();
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     void insert(Words words);

@@ -15,6 +15,9 @@ import android.widget.Switch;
 import com.example.learninglanguages10.DB.AppDatabase;
 import com.example.learninglanguages10.DB.Words;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TeachFragment extends Fragment {
     Switch translation;
     Switch spelling;
@@ -68,25 +71,31 @@ public class TeachFragment extends Fragment {
         return viewReturn;
     }
 
-    public void getLevel(Words words){
+    public List<Words> getLevel(){
+        List<Words> language = new ArrayList<>();
         Thread thread = new Thread(new Runnable() {
             public void run() {
-                Log.d("DB", "add a new word to DB:" + words.getLevel() + "|" + words.getWord() + "|" + words.getLanguage() + "|" + words.getTranslation());
-                AppDatabase.getInstance(getContext()).wordsDao().insert(words);
+                Log.d("DB", "get level");
+                List<Words> getLanguage = AppDatabase.getInstance(getContext()).wordsDao().getLevel();
                 Log.d("DB", "Table dump");
+                //language = getLanguage;
+
             }
         });
         thread.start();
+        return language;
     }
 
-    public void getLanguage(Words words){
+    public List<Words> getLanguage(Words words){
+        List<Words> language = null;
         Thread thread = new Thread(new Runnable() {
             public void run() {
                 Log.d("DB", "add a new word to DB:" + words.getLevel() + "|" + words.getWord() + "|" + words.getLanguage() + "|" + words.getTranslation());
-                AppDatabase.getInstance(getContext()).wordsDao().insert(words);
+                //language = AppDatabase.getInstance(getContext()).wordsDao().getLanguage();
                 Log.d("DB", "Table dump");
             }
         });
         thread.start();
+        return language;
     }
 }
