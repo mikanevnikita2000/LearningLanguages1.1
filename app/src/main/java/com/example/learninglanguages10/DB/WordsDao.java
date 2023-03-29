@@ -22,6 +22,11 @@ public interface WordsDao {
     @Query("SELECT level FROM words")
     List<Words> getLevel();
 
+    @Query("SELECT id FROM words")
+    List<Words> getId();
+
+
+
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     void insert(Words words);
 

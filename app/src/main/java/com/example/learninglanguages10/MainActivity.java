@@ -3,20 +3,17 @@ package com.example.learninglanguages10;
 import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
-import com.google.android.material.snackbar.Snackbar;
-
-public class MainActivity extends AppCompatActivity implements StartFragment.OnClickStartFragmentListener{
+public class MainActivity extends AppCompatActivity implements StartFragment.OnClickStartFragmentListener, TeachFragment.OnClickTeachFragmentListener{
 
     StartFragment startFragment;
     final static String TAG_START= "TAG_START";
     final static String TAG_ADD= "TAG_ADD";
     final static String TAG_TEACH= "TAG_TEACH";
+    final static String TAG_TASK= "TAG_TASK";
 
 
     @Override
@@ -39,6 +36,17 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnC
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fl_list, teachFragment, TAG_TEACH)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onClickTask() {
+        Log.i(" TaskFragment", " Переходим в TaskFragment");
+        TaskFragment taskFragment = new TaskFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_list, taskFragment, TAG_TASK)
                 .addToBackStack(null)
                 .commit();
     }

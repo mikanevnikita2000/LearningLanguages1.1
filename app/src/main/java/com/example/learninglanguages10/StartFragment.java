@@ -28,7 +28,6 @@ public class StartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View viewReturn = inflater.inflate(R.layout.fragment_start, container, false);
 
         teach = (Button) viewReturn.findViewById(R.id.teach);
@@ -70,6 +69,7 @@ public class StartFragment extends Fragment {
 
     public interface OnClickStartFragmentListener {
         void onClickTeach();
+        void onClickTask();
         void onClickAdd();
         void onClickSettings();
         void onClickExit();

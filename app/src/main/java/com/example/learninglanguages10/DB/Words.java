@@ -66,4 +66,7 @@ public class Words {
         words.level = level;
         return words;
     }
+    public String toString(Words word){
+        return "id=" + word.getId()+ "|" + "level=" + word.getLevel() + "|" + "word=" + word.getWord() + "|" + "lg=" + word.getLanguage() + "|" + "transl=" + word.getTranslation();
+    }
 }
