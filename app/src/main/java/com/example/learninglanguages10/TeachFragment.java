@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.learninglanguages10.DB.AppDatabase;
 import com.example.learninglanguages10.DB.Words;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeachFragment extends Fragment {
@@ -27,6 +28,8 @@ public class TeachFragment extends Fragment {
     Button start;
     Spinner level, language;
     String st = "";
+    List<String> listLevel = new ArrayList<>();
+    List<String> listLanguage = new ArrayList<>();
 
 
 
@@ -46,7 +49,17 @@ public class TeachFragment extends Fragment {
         language = (Spinner) viewReturn.findViewById(R.id.language);
         translationOrSpelling = (RadioGroup) viewReturn.findViewById(R.id.translationOrSpelling);
         getLevel();
-//
+        getLanguage();
+
+        ArrayAdapter<String> adapterLevel = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLevel);
+        level.setAdapter(adapterLevel);
+        ArrayAdapter<String> adapterLanguage = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLanguage);
+        language.setAdapter(adapterLanguage);
+
+//        Log.d("level", "Word: " + listLevel);
+//        Log.d("language", "Word: " + listLanguage);
+
+
 //        ArrayAdapter<String> adapterLevel = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, levelAll);
 //        adapterLevel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -106,18 +119,18 @@ public class TeachFragment extends Fragment {
         Thread thread = new Thread(new Runnable() {
             public void run() {
                 Log.d("DB", "get level");
-                List<Words> getLanguage = AppDatabase.getInstance(getContext()).wordsDao().getLevel();
+                List<Words> getLevel = AppDatabase.getInstance(getContext()).wordsDao().getLevel();
                 Log.d("DB", "Table dump");
-                String[] language = new String[getLanguage.size()];
-                for (int i = 0; i < getLanguage.size(); i++){
-                    language[i] = (String.valueOf(getLanguage.get(i)));
-                    Log.d("DB All level", "Word: " + language[i]);
+                for (int i = 0; i < getLevel.size(); i++){
+                    Words level = getLevel.get(i);
+                    listLevel.add(level.getLevel());
+                    Log.d("DB All level", "Word: " + level.getLevel());
                 }
-
+                return;
             }
         });
         thread.start();
-        return ;
+        return;
     }
 
     public void printAllWords(){
@@ -129,25 +142,25 @@ public class TeachFragment extends Fragment {
                     Words word = allWordsInDB.get(i);
                     Log.d("DB All Words", "Word: " + word.toString(word));
                 }
-
-                //language = getLanguage;
-
             }
         });
         thread.start();
     }
 
-    public List<Words> getLanguage(Words words){
-        List<Words> language = null;
+    public void getLanguage(){
         Thread thread = new Thread(new Runnable() {
             public void run() {
-                Log.d("DB", "add a new word to DB:" + words.toString(words));
-                //language = AppDatabase.getInstance(getContext()).wordsDao().getLanguage();
-                Log.d("DB", "Table dump");
+                List<Words> getLanguage = AppDatabase.getInstance(getContext()).wordsDao().getLanguage();
+                for (int i = 0; i < getLanguage.size(); i++){
+                    Words language = getLanguage.get(i);
+                    listLanguage.add(language.getLanguage());
+                    Log.d("DB All level", "Word: " + language.getLanguage());
+                }
+                return;
             }
         });
         thread.start();
-        return language;
+        return;
     }
 
 
