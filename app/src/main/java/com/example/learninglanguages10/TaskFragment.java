@@ -40,11 +40,14 @@ public class TaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View returnView = inflater.inflate(R.layout.fragment_task, container, false);
+        String taskTranslationOrSpelling = MainActivity.taskSelection;
+        Log.d("Translation Or Spelling", "taskTranslationOrSpelling = " + taskTranslationOrSpelling );
         task = (TextView) returnView.findViewById(R.id.task);
         correctnessAnswer = (TextView) returnView.findViewById(R.id.correctnessAnswer);
         followingExample = (Button) returnView.findViewById(R.id.followingExample);
         int index = determiningCorrectAnswer();
         checkAnswer(returnView, index);
+
         followingExample.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +63,7 @@ public class TaskFragment extends Fragment {
 
     public int determiningCorrectAnswer()
     {
+
         int index = (int) Math.random()*((3-0)+1);
         switch (index)
         {
@@ -105,20 +109,10 @@ public class TaskFragment extends Fragment {
         });
     }
 
-    public String queryAll()
+    public String queryCorrectAnswer()
     {
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
-                List<Words> allWordsInDB = AppDatabase.getInstance(getContext()).wordsDao().getAll();
-                Log.d("Count allWordsInDB", String.valueOf(allWordsInDB.size()));
+        List<Words> correctAnswer = AppDatabase.getInstance(getContext()).wordsDao().getCorrectAnswer();
 
-//                for(int i = 0; i < allWordsInDB.size(); i++) {
-//                    Words word = allWordsInDB.get(i);
-//                    Log.d("DB All Words", "Word: " + word.toString(word));
-//                }
-            }
-        });
-        thread.start();
         return "";
     }
 }

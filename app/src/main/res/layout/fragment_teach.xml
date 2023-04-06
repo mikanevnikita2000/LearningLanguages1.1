@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <Spinner
-            android:id="@+id/level"
+            android:id="@+id/language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -22,7 +22,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Spinner
-            android:id="@+id/language"
+            android:id="@+id/level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"

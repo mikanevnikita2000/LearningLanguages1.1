@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -45,46 +46,64 @@ public class TeachFragment extends Fragment {
                              Bundle savedInstanceState) {
         View viewReturn = inflater.inflate(R.layout.fragment_teach, container, false);
         start = (Button) viewReturn.findViewById(R.id.start);
-        level = (Spinner) viewReturn.findViewById(R.id.level);
-        language = (Spinner) viewReturn.findViewById(R.id.language);
+        level = (Spinner) viewReturn.findViewById(R.id.language);
+        language = (Spinner) viewReturn.findViewById(R.id.level);
         translationOrSpelling = (RadioGroup) viewReturn.findViewById(R.id.translationOrSpelling);
         getLevel();
         getLanguage();
 
         ArrayAdapter<String> adapterLevel = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLevel);
         level.setAdapter(adapterLevel);
+
+        level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                MainActivity.setLevel(listLevel.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         ArrayAdapter<String> adapterLanguage = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLanguage);
         language.setAdapter(adapterLanguage);
 
-//        Log.d("level", "Word: " + listLevel);
-//        Log.d("language", "Word: " + listLanguage);
+        language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                MainActivity.setTaskSelection(listLanguage.get(position));
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-//        ArrayAdapter<String> adapterLevel = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, levelAll);
-//        adapterLevel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            }
+        });
 
 
         translationOrSpelling.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case -1:
-                        st = "Нечего не выбрано";
-//                        Toast.makeText(getContext(), "Нечего не выбрано",
-//                                Toast.LENGTH_SHORT).show();
                     case R.id.translation:
+                        MainActivity.setTaskSelection("translation");
                         st = "translation";
+                        return;
+
                     case R.id.spelling:
+                        MainActivity.setTaskSelection("spelling");
                         st = "spelling";
+                        return;
                 }
             }
         });
-        printAllWords();
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(st == "spelling")
+                if(st == "translation")
                 {
                     OnClickTeachFragmentListener listener = (OnClickTeachFragmentListener) getActivity();
                     listener.onClickTask();
@@ -131,20 +150,6 @@ public class TeachFragment extends Fragment {
         });
         thread.start();
         return;
-    }
-
-    public void printAllWords(){
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
-                List<Words> allWordsInDB = AppDatabase.getInstance(getContext()).wordsDao().getAll();
-                Log.d("Count allWordsInDB", String.valueOf(allWordsInDB.size()));
-                for(int i = 0; i < allWordsInDB.size(); i++) {
-                    Words word = allWordsInDB.get(i);
-                    Log.d("DB All Words", "Word: " + word.toString(word));
-                }
-            }
-        });
-        thread.start();
     }
 
     public void getLanguage(){

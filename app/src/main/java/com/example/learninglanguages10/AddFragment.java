@@ -2,13 +2,9 @@ package com.example.learninglanguages10;
 
 import static com.example.learninglanguages10.DB.Words.generateWord;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.room.Room;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +41,7 @@ public class AddFragment extends Fragment {
         levelAdd = (EditText) viewReturn.findViewById(R.id.levelAdd);
         wordAdd = (EditText) viewReturn.findViewById(R.id.word);
         translationAdd = (EditText) viewReturn.findViewById(R.id.translationAdd);
-        languageAdd = (EditText) viewReturn.findViewById(R.id.language);
+        languageAdd = (EditText) viewReturn.findViewById(R.id.level);
         buttonAdd = (Button) viewReturn.findViewById(R.id.buttonAdd);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {

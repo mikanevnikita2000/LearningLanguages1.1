@@ -16,15 +16,18 @@ public interface WordsDao {
     @Query("SELECT * FROM words")
     List<Words> getAll();
 
-    @Query("SELECT language FROM words")
+    @Query("SELECT language FROM words GROUP BY language")
     List<Words> getLanguage();
 
-    @Query("SELECT level FROM words")
+    @Query("SELECT level FROM words GROUP BY level")
     List<Words> getLevel();
 
-    @Query("SELECT id FROM words")
+    @Query("SELECT id FROM words ")
     List<Words> getId();
 
+
+    @Query("SELECT word, translation FROM words ")
+    List<Words> getCorrectAnswer();
 
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)

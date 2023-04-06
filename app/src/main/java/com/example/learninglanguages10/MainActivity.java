@@ -14,6 +14,10 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnC
     final static String TAG_ADD= "TAG_ADD";
     final static String TAG_TEACH= "TAG_TEACH";
     final static String TAG_TASK= "TAG_TASK";
+    public static String taskSelection = "";
+    public static String translation = "";
+    public static String level = "";
+
 
 
     @Override
@@ -64,6 +68,23 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnC
     @Override
     public void onClickSettings() {
 
+    }
+
+    public static void setTaskSelection(String task)
+    {
+        taskSelection = task;
+    }
+
+    public static void setLevel(String setlevel)
+    {
+        level = setlevel;
+        Log.d("Выбран элемент:", ""+level);
+    }
+
+    public static void setTranslation(String settranslation)
+    {
+        translation = settranslation;
+        Log.d("Выбран элемент:", ""+translation);
     }
 
     @Override
