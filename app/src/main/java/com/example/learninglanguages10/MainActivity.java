@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnC
     final static String TAG_TEACH= "TAG_TEACH";
     final static String TAG_TASK= "TAG_TASK";
     public static String taskSelection = "";
-    public static String translation = "";
+    public static String language = "";
     public static String level = "";
 
 
@@ -75,16 +75,16 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnC
         taskSelection = task;
     }
 
-    public static void setLevel(String setlevel)
+    public static void setLevel(String setLevel)
     {
-        level = setlevel;
+        level = setLevel;
         Log.d("Выбран элемент:", ""+level);
     }
 
-    public static void setTranslation(String settranslation)
+    public static void setLanguage(String setLanguage)
     {
-        translation = settranslation;
-        Log.d("Выбран элемент:", ""+translation);
+        language = setLanguage;
+        Log.d("Выбран элемент:", ""+language);
     }
 
     @Override

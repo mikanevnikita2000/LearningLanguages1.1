@@ -42,17 +42,25 @@ public class TaskFragment extends Fragment {
         View returnView = inflater.inflate(R.layout.fragment_task, container, false);
         String taskTranslationOrSpelling = MainActivity.taskSelection;
         Log.d("Translation Or Spelling", "taskTranslationOrSpelling = " + taskTranslationOrSpelling );
-        task = (TextView) returnView.findViewById(R.id.task);
+
         correctnessAnswer = (TextView) returnView.findViewById(R.id.correctnessAnswer);
         followingExample = (Button) returnView.findViewById(R.id.followingExample);
-        int index = determiningCorrectAnswer();
-        checkAnswer(returnView, index);
+        int index = determiningCorrectAnswer(returnView);
+
+
+        answerGroup = (RadioGroup) returnView.findViewById(R.id.answerGroup);
+        answerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                checkAnswer(checkedId, index);
+            }
+        });
 
         followingExample.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int index = determiningCorrectAnswer();
-                checkAnswer(returnView, index);
+                int index = determiningCorrectAnswer(returnView);
+                //checkAnswer(returnView, index);
             }
         });
 
@@ -61,58 +69,102 @@ public class TaskFragment extends Fragment {
     }
 
 
-    public int determiningCorrectAnswer()
+    public int determiningCorrectAnswer(View returnView)
     {
-
+        List<String> listWordAndTranslation = new ArrayList<>();
         int index = (int) Math.random()*((3-0)+1);
         switch (index)
         {
             case 1:
+                answer1.setText(listWordAndTranslation.get(1));
+                if(MainActivity.taskSelection == "translation")
+                {
+                    task = (TextView) returnView.findViewById(R.id.task);
+                    listWordAndTranslation = queryCorrectAnswer();
+                    task.setText("Переведите слово: " + listWordAndTranslation.get(0));
+                    List<String> listWordBeforeAnswer = queryIncorrectAnswers(listWordAndTranslation.get(0));
+                    answer2.setText(listWordBeforeAnswer.get(0));
+                    answer3.setText(listWordBeforeAnswer.get(1));
 
+                }
+                if(MainActivity.taskSelection == "spelling")
+                {
+                    task = (TextView) returnView.findViewById(R.id.task);
+                    listWordAndTranslation = queryCorrectAnswer();
+                    task.setText("Напишите правильно слово " + listWordAndTranslation.get(1));
+                    String word = listWordAndTranslation.get(0);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int letterNumber = (int) Math.random()*word.length();
+
+                    }
+
+                }
             case 2:
-
+                answer2.setText(listWordAndTranslation.get(1));
             case 3:
+                answer3.setText(listWordAndTranslation.get(1));
 
         }
         return index;
     }
 
-    public void checkAnswer(View returnView, int index)
+    public void checkAnswer(int checkedId, int index)
     {
-        answerGroup = (RadioGroup) returnView.findViewById(R.id.answerGroup);
-
-
-        answerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.answer1:
-                        if(1 == index) {
-                            correctnessAnswer.setText("Правильно");
-                        }else {
-                            correctnessAnswer.setText("Неправильно");
-                        }
-                    case R.id.answer2:
-                        if(2 == index) {
-                            correctnessAnswer.setText("Правильно");
-                        }else {
-                            correctnessAnswer.setText("Неправильно");
-                        }
-                    case R.id.answer3:
-                        if(3 == index) {
-                            correctnessAnswer.setText("Правильно");
-                        }else {
-                            correctnessAnswer.setText("Неправильно");
-                        }
+        switch (checkedId) {
+            case R.id.answer1:
+                if (1 == index) {
+                    correctnessAnswer.setText("Правильно");
+                } else {
+                    correctnessAnswer.setText("Неправильно");
                 }
-            }
-        });
+            case R.id.answer2:
+                if (2 == index) {
+                    correctnessAnswer.setText("Правильно");
+                } else {
+                    correctnessAnswer.setText("Неправильно");
+                }
+            case R.id.answer3:
+                if (3 == index) {
+                    correctnessAnswer.setText("Правильно");
+                } else {
+                    correctnessAnswer.setText("Неправильно");
+                }
+        }
     }
 
-    public String queryCorrectAnswer()
-    {
-        List<Words> correctAnswer = AppDatabase.getInstance(getContext()).wordsDao().getCorrectAnswer();
 
-        return "";
+    public List<String> queryCorrectAnswer()
+    {
+        List<Words> correctAnswer = AppDatabase.getInstance(getContext()).wordsDao().getCorrectAnswer(MainActivity.level, MainActivity.language);
+        int i = (int) Math.random()*correctAnswer.size();
+        Words wordAndTranslation = correctAnswer.get(i);
+        List<String> listWordAndTranslation = new ArrayList<>();
+        listWordAndTranslation.add(wordAndTranslation.getWord());
+        listWordAndTranslation.add(wordAndTranslation.getTranslation());
+        Log.i("Spelling", "Word and translation " + listWordAndTranslation.get(0) + " And " + listWordAndTranslation.get(1));
+
+        return listWordAndTranslation;
+    }
+
+    public List<String> queryIncorrectAnswers(String wordCorrect)
+    {
+        List<Words> correctAnswer = AppDatabase.getInstance(getContext()).wordsDao().getIncorrectAnswers(MainActivity.language, wordCorrect);
+        List<String> listWordBeforeAnswer = new ArrayList<>();
+        int id = 0;
+        int idRecurring = 0;
+        for (int i = 0; i<2; i++)
+        {
+
+            id = (int) Math.random()*correctAnswer.size();
+            if(id != idRecurring)
+            {
+                listWordBeforeAnswer.add(String.valueOf(correctAnswer.get(id)));
+                idRecurring = id;
+            }
+
+        }
+
+        return listWordBeforeAnswer;
     }
 }

@@ -2,6 +2,7 @@ package com.example.learninglanguages10.DB;
 
 
 
+
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -22,12 +23,11 @@ public interface WordsDao {
     @Query("SELECT level FROM words GROUP BY level")
     List<Words> getLevel();
 
-    @Query("SELECT id FROM words ")
-    List<Words> getId();
+    @Query("SELECT word, translation FROM words WHERE level LIKE :level AND language LIKE :language")
+    List<Words> getCorrectAnswer(String level, String language);
 
-
-    @Query("SELECT word, translation FROM words ")
-    List<Words> getCorrectAnswer();
+    @Query("SELECT word, translation FROM words WHERE language = :language AND word NOT IN(':word')")
+    List<Words> getIncorrectAnswers(String language, String word);
 
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)

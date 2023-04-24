@@ -53,12 +53,18 @@ public class TeachFragment extends Fragment {
         getLanguage();
 
         ArrayAdapter<String> adapterLevel = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLevel);
+        adapterLevel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         level.setAdapter(adapterLevel);
 
+        ArrayAdapter<String> adapterLanguage = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLanguage);
+        adapterLanguage.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        language.setAdapter(adapterLanguage);
         level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                MainActivity.setLevel(listLevel.get(position));
+                MainActivity.setLevel(parent.getItemAtPosition(position).toString());
+//                String selectedLevel = listLevel.get(position);
+//                MainActivity.setLevel(selectedLevel);
             }
 
             @Override
@@ -66,14 +72,11 @@ public class TeachFragment extends Fragment {
 
             }
         });
-
-        ArrayAdapter<String> adapterLanguage = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLanguage);
-        language.setAdapter(adapterLanguage);
 
         language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                MainActivity.setTaskSelection(listLanguage.get(position));
+                MainActivity.setLanguage(parent.getItemAtPosition(position).toString());
             }
 
             @Override
@@ -81,6 +84,8 @@ public class TeachFragment extends Fragment {
 
             }
         });
+
+
 
 
         translationOrSpelling.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -102,6 +107,7 @@ public class TeachFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 if(st == "translation")
                 {
@@ -137,9 +143,7 @@ public class TeachFragment extends Fragment {
     public void getLevel(){
         Thread thread = new Thread(new Runnable() {
             public void run() {
-                Log.d("DB", "get level");
                 List<Words> getLevel = AppDatabase.getInstance(getContext()).wordsDao().getLevel();
-                Log.d("DB", "Table dump");
                 for (int i = 0; i < getLevel.size(); i++){
                     Words level = getLevel.get(i);
                     listLevel.add(level.getLevel());
@@ -159,7 +163,7 @@ public class TeachFragment extends Fragment {
                 for (int i = 0; i < getLanguage.size(); i++){
                     Words language = getLanguage.get(i);
                     listLanguage.add(language.getLanguage());
-                    Log.d("DB All level", "Word: " + language.getLanguage());
+                    Log.d("DB All language", "Word: " + language.getLanguage());
                 }
                 return;
             }
