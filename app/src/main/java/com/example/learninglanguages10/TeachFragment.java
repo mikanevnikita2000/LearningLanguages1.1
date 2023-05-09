@@ -63,6 +63,7 @@ public class TeachFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 MainActivity.setLevel(parent.getItemAtPosition(position).toString());
+                Log.d("level", "setOnItemSelectedListener");
 //                String selectedLevel = listLevel.get(position);
 //                MainActivity.setLevel(selectedLevel);
             }
@@ -77,6 +78,7 @@ public class TeachFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 MainActivity.setLanguage(parent.getItemAtPosition(position).toString());
+                Log.d("language", "setOnItemSelectedListener");
             }
 
             @Override

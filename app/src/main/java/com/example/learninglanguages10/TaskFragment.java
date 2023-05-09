@@ -73,6 +73,7 @@ public class TaskFragment extends Fragment {
     {
         List<String> listWordAndTranslation = new ArrayList<>();
         int index = (int) Math.random()*((3-0)+1);
+        String[] alphabet = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         switch (index)
         {
             case 1:
@@ -93,11 +94,13 @@ public class TaskFragment extends Fragment {
                     listWordAndTranslation = queryCorrectAnswer();
                     task.setText("Напишите правильно слово " + listWordAndTranslation.get(1));
                     String word = listWordAndTranslation.get(0);
-                    for (int i = 0; i < 2; i++)
-                    {
-                        int letterNumber = (int) Math.random()*word.length();
 
-                    }
+                    int letterNumber2 = (int) Math.random()*word.length();
+                    int letterNumber3 = (int) Math.random()*word.length();
+                    int letterNumberBeforeAnswer2 = (int) Math.random()*27;
+                    int letterNumberBeforeAnswer3 = (int) Math.random()*27;
+
+
 
                 }
             case 2:
