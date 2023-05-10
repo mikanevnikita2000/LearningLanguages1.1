@@ -1,5 +1,6 @@
 package com.example.learninglanguages10;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static com.example.learninglanguages10.DB.Words.generateWord;
 
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.learninglanguages10.DB.AppDatabase;
 import com.example.learninglanguages10.DB.Words;
@@ -50,7 +52,10 @@ public class AddFragment extends Fragment {
                 Words words = generateWord(levelAdd.getText().toString(), wordAdd.getText().toString(), translationAdd.getText().toString(), languageAdd.getText().toString());
                 Log.d("Words", "create a new word:" + words.getLevel() + "|" + words.getWord() + "|" + words.getLanguage() + "|" + words.getTranslation());
                 addItem(words);
+                Toast.makeText(getContext(), "Слово добавлено",
+                        LENGTH_SHORT).show();
                 //updateItem(words);
+
             }
         });
         return viewReturn;
@@ -64,6 +69,7 @@ public class AddFragment extends Fragment {
                 Log.d("DB", "add a new word to DB:" + words.getLevel() + "|" + words.getWord() + "|" + words.getLanguage() + "|" + words.getTranslation());
                 AppDatabase.getInstance(getContext()).wordsDao().insert(words);
                 Log.d("DB", "Table dump");
+
             }
         });
         thread.start();

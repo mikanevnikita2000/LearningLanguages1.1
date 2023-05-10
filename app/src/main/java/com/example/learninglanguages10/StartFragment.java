@@ -1,5 +1,7 @@
 package com.example.learninglanguages10;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class StartFragment extends Fragment {
 
@@ -38,6 +41,8 @@ public class StartFragment extends Fragment {
         teach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Немного подождите",
+                        LENGTH_SHORT).show();
                 OnClickStartFragmentListener listener = (OnClickStartFragmentListener) getActivity();
                 listener.onClickTeach();
             }

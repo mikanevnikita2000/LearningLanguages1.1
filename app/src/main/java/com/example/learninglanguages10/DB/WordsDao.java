@@ -17,7 +17,7 @@ public interface WordsDao {
     @Query("SELECT * FROM words")
     List<Words> getAll();
 
-    @Query("SELECT language FROM words GROUP BY language")
+    @Query("SELECT language FROM words  GROUP BY language")
     List<Words> getLanguage();
 
     @Query("SELECT level FROM words GROUP BY level")
@@ -26,7 +26,7 @@ public interface WordsDao {
     @Query("SELECT word, translation FROM words WHERE level LIKE :level AND language LIKE :language")
     List<Words> getCorrectAnswer(String level, String language);
 
-    @Query("SELECT word, translation FROM words WHERE language = :language AND word NOT IN(':word')")
+    @Query("SELECT word, translation FROM words WHERE language = :language AND word NOT IN(:word )")
     List<Words> getIncorrectAnswers(String language, String word);
 
 

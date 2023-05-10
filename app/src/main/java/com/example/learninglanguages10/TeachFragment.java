@@ -23,8 +23,9 @@ import com.example.learninglanguages10.DB.Words;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class TeachFragment extends Fragment {
+public class TeachFragment extends Fragment  {
     RadioGroup translationOrSpelling;
     Button start;
     Spinner level, language;
@@ -51,6 +52,8 @@ public class TeachFragment extends Fragment {
         translationOrSpelling = (RadioGroup) viewReturn.findViewById(R.id.translationOrSpelling);
         getLevel();
         getLanguage();
+        Log.d("listLevel", "" + listLevel  );
+        Log.d("listLanguage", "" + listLanguage  );
 
         ArrayAdapter<String> adapterLevel = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listLevel);
         adapterLevel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,10 +65,8 @@ public class TeachFragment extends Fragment {
         level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                MainActivity.setLevel(parent.getItemAtPosition(position).toString());
                 Log.d("level", "setOnItemSelectedListener");
-//                String selectedLevel = listLevel.get(position);
-//                MainActivity.setLevel(selectedLevel);
+                MainActivity.setLevel(parent.getItemAtPosition(position).toString());
             }
 
             @Override
@@ -77,8 +78,8 @@ public class TeachFragment extends Fragment {
         language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                MainActivity.setLanguage(parent.getItemAtPosition(position).toString());
                 Log.d("language", "setOnItemSelectedListener");
+                MainActivity.setLanguage(parent.getItemAtPosition(position).toString());
             }
 
             @Override
@@ -109,14 +110,15 @@ public class TeachFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listLanguage.clear();
+                listLevel.clear();;
 
-
-                if(st == "translation")
+                if(st.equals("translation"))
                 {
                     OnClickTeachFragmentListener listener = (OnClickTeachFragmentListener) getActivity();
                     listener.onClickTask();
                 }
-                else if(st == "spelling")
+                else if(st.equals("spelling"))
                 {
                     OnClickTeachFragmentListener listener = (OnClickTeachFragmentListener) getActivity();
                     listener.onClickTask();
@@ -155,6 +157,15 @@ public class TeachFragment extends Fragment {
             }
         });
         thread.start();
+        while (listLevel.size() == 0)
+        {
+            Log.d("List level", "" + listLevel);
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return;
     }
 
@@ -171,8 +182,22 @@ public class TeachFragment extends Fragment {
             }
         });
         thread.start();
+        while (listLanguage.size() == 0)
+        {
+            Log.d("List level", "" + listLanguage);
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return;
     }
 
 
 }
+
+
+
+//                String selectedLevel = listLevel.get(position);
+//                MainActivity.setLevel(selectedLevel);
