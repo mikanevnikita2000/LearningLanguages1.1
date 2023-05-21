@@ -81,7 +81,9 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:fontFamily="sans-serif-black"
+            android:text="Настройка вопросов"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,13 +101,13 @@
 
             <RadioButton
                 android:id="@+id/translation"
-                android:layout_width="188dp"
+                android:layout_width="141dp"
                 android:layout_height="79dp"
                 android:text="Перевод" />
 
             <RadioButton
                 android:id="@+id/spelling"
-                android:layout_width="188dp"
+                android:layout_width="139dp"
                 android:layout_height="79dp"
                 android:text="Правописание" />
         </RadioGroup>

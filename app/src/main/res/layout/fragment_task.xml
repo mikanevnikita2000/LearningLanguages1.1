@@ -14,6 +14,7 @@
             android:id="@+id/heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
             android:text="Задание"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
@@ -90,19 +91,21 @@
 
             <RadioButton
                 android:id="@+id/answer1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="101dp"
+                android:maxLength="400"
                 android:text="RadioButton" />
 
             <RadioButton
                 android:id="@+id/answer2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="101dp"
+                android:maxLength="400"
                 android:text="RadioButton" />
 
             <RadioButton
                 android:id="@+id/answer3"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="101dp"
                 android:text="RadioButton" />
         </RadioGroup>
