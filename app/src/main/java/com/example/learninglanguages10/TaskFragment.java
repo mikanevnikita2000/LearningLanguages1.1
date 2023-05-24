@@ -43,6 +43,7 @@ public class TaskFragment extends Fragment {
                              Bundle savedInstanceState) {
         View returnView = inflater.inflate(R.layout.fragment_task, container, false);
 
+
         String taskTranslationOrSpelling = MainActivity.taskSelection;
         Log.d("Translation Or Spelling", "taskTranslationOrSpelling = " + taskTranslationOrSpelling );
 
@@ -50,7 +51,7 @@ public class TaskFragment extends Fragment {
         followingExample = (Button) returnView.findViewById(R.id.followingExample);
         index = determiningCorrectAnswer(returnView);
 
-
+        correctnessAnswer.setText("" + getResources().getString(R.string.falseAnswer));
 
         answerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -62,7 +63,7 @@ public class TaskFragment extends Fragment {
         followingExample.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                correctnessAnswer.setText("Неправильно");
+                correctnessAnswer.setText("" + getResources().getString(R.string.falseAnswer));
                 index = determiningCorrectAnswer(returnView);
             }
         });
@@ -88,7 +89,7 @@ public class TaskFragment extends Fragment {
                 if(MainActivity.taskSelection.equals("translation"))
                 {
                     task = (TextView) returnView.findViewById(R.id.task);
-                    task.setText("Переведите слово: " + listWordAndTranslation.get(1));
+                    task.setText("" + getResources().getString(R.string.questionTranslation) + " " + listWordAndTranslation.get(1));
                     List<String> listWordBeforeAnswer = queryIncorrectAnswers(listWordAndTranslation.get(0));
                     answer2.setText("" + listWordBeforeAnswer.get(0));
                     answer3.setText("" + listWordBeforeAnswer.get(1));
@@ -98,7 +99,7 @@ public class TaskFragment extends Fragment {
                 {
                     task = (TextView) returnView.findViewById(R.id.task);
                     //listWordAndTranslation = queryCorrectAnswer();
-                    task.setText("Напишите правильно слово: " + listWordAndTranslation.get(1));
+                    task.setText("" + getResources().getString(R.string.questionSpelling) + " " + listWordAndTranslation.get(1));
                     String word = listWordAndTranslation.get(0);
 
                     int letterNumber2 = new Random().nextInt(word.length() - 0) + 0;
@@ -120,7 +121,7 @@ public class TaskFragment extends Fragment {
                 if(MainActivity.taskSelection.equals("translation"))
                 {
                     task = (TextView) returnView.findViewById(R.id.task);
-                    task.setText("Переведите слово: " + listWordAndTranslation.get(1));
+                    task.setText("" + getResources().getString(R.string.questionTranslation) + " "  + listWordAndTranslation.get(1));
                     List<String> listWordBeforeAnswer = queryIncorrectAnswers(listWordAndTranslation.get(0));
                     answer1.setText("" + listWordBeforeAnswer.get(0));
                     answer3.setText("" + listWordBeforeAnswer.get(1));
@@ -129,8 +130,7 @@ public class TaskFragment extends Fragment {
                 if(MainActivity.taskSelection.equals("spelling"))
                 {
                     task = (TextView) returnView.findViewById(R.id.task);
-                    //listWordAndTranslation = queryCorrectAnswer();
-                    task.setText("Напишите правильно слово: " + listWordAndTranslation.get(1));
+                    task.setText("" + getResources().getString(R.string.questionSpelling) + " " + listWordAndTranslation.get(1));
                     String word = listWordAndTranslation.get(0);
 
                     int letterNumber1 = new Random().nextInt(word.length() - 0) + 0;
@@ -152,7 +152,7 @@ public class TaskFragment extends Fragment {
                 if(MainActivity.taskSelection.equals("translation"))
                 {
                     task = (TextView) returnView.findViewById(R.id.task);
-                    task.setText("Переведите слово: " + listWordAndTranslation.get(1));
+                    task.setText("" + getResources().getString(R.string.questionTranslation) + " " + listWordAndTranslation.get(1));
                     List<String> listWordBeforeAnswer = queryIncorrectAnswers(listWordAndTranslation.get(0));
                     answer1.setText("" + listWordBeforeAnswer.get(0));
                     answer2.setText("" + listWordBeforeAnswer.get(1));
@@ -161,8 +161,7 @@ public class TaskFragment extends Fragment {
                 if(MainActivity.taskSelection.equals("spelling"))
                 {
                     task = (TextView) returnView.findViewById(R.id.task);
-                    //listWordAndTranslation = queryCorrectAnswer();
-                    task.setText("Напишите правильно слово: " + listWordAndTranslation.get(1));
+                    task.setText("" + getResources().getString(R.string.questionSpelling)  + " " + listWordAndTranslation.get(1));
                     String word = listWordAndTranslation.get(0);
 
                     int letterNumber1 = new Random().nextInt(word.length() - 0) + 0;
@@ -188,23 +187,23 @@ public class TaskFragment extends Fragment {
         switch (checkedId) {
             case R.id.answer1:
                 if (1 == index) {
-                    correctnessAnswer.setText("Правильно");
+                    correctnessAnswer.setText("" + getResources().getString(R.string.trueAnswer));
                 } else {
-                    correctnessAnswer.setText("Неправильно");
+                    correctnessAnswer.setText("" + getResources().getString(R.string.falseAnswer));
                 }
                 break;
             case R.id.answer2:
                 if (2 == index) {
-                    correctnessAnswer.setText("Правильно");
+                    correctnessAnswer.setText("" + getResources().getString(R.string.trueAnswer));
                 } else {
-                    correctnessAnswer.setText("Неправильно");
+                    correctnessAnswer.setText("" + getResources().getString(R.string.falseAnswer));
                 }
                 break;
             case R.id.answer3:
                 if (3 == index) {
-                    correctnessAnswer.setText("Правильно");
+                    correctnessAnswer.setText("" + getResources().getString(R.string.trueAnswer));
                 } else {
-                    correctnessAnswer.setText("Неправильно");
+                    correctnessAnswer.setText("" + getResources().getString(R.string.falseAnswer));
                 }
                 break;
         }

@@ -6,11 +6,13 @@
     <string name="addStart">Добавить</string>
     <string name="settings">Настройки</string>
     <string name="exit">Выход</string>
+    <string name="waitBit">Немного подождите</string>
     <!-- Teach -->
     <string name="translationTeach">Перевод</string>
     <string name="spelling">Правописание</string>
     <string name="start">Начать</string>
-    //Todo
+    <string name="settingQuestions">Настройка вопросов</string>
+    <string name="nothingSelected">Нечего не выбрано</string>
     <!-- Add -->
     <string name="difficultyLevel">Уровень сложности</string>
     <string name="word">Слово</string>
@@ -18,7 +20,15 @@
     <string name="language">Язык</string>
     <string name="addAdd">Добавить</string>
     <string name="addWord">Добавить слово</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <!-- Task -->
+    <string name="task">Задание</string>
+    <string name="trueAnswer">Правильно</string>
+    <string name="falseAnswer">Неправильно</string>
+    <string name="questionTranslation">Переведите слово:</string>
+    <string name="questionSpelling">Напишите правильно слово:</string>
+    <string name="nextTask">Следующее задание</string>
+    <!-- Setting -->
+    <string name="setting">Настройки</string>
+    <string name="languageSelection">Выбор языка</string>
+    <string name="choosingTheme">Выбор темы</string>
 </resources>

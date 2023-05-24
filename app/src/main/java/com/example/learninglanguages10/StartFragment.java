@@ -41,7 +41,7 @@ public class StartFragment extends Fragment {
         teach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Немного подождите",
+                Toast.makeText(getContext(), "" +  getResources().getString(R.string.waitBit),
                         LENGTH_SHORT).show();
                 OnClickStartFragmentListener listener = (OnClickStartFragmentListener) getActivity();
                 listener.onClickTeach();

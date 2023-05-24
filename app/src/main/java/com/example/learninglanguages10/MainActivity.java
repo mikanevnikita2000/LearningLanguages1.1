@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnC
     final static String TAG_ADD= "TAG_ADD";
     final static String TAG_TEACH= "TAG_TEACH";
     final static String TAG_TASK= "TAG_TASK";
+    final static String TAG_SETTING= "TAG_SETTING";
     public static String taskSelection = "";
     public static String language = "";
     public static String level = "";
@@ -67,7 +68,12 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnC
 
     @Override
     public void onClickSettings() {
-
+        SettingFragment settingFragment = new SettingFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_list, settingFragment, TAG_SETTING)
+                .addToBackStack(null)
+                .commit();
     }
 
     public static void setTaskSelection(String task)

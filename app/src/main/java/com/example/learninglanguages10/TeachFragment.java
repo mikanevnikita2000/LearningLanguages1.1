@@ -2,6 +2,8 @@ package com.example.learninglanguages10;
 
 
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -115,17 +117,21 @@ public class TeachFragment extends Fragment  {
 
                 if(st.equals("translation"))
                 {
+                    Toast.makeText(getContext(), "" +  getResources().getString(R.string.waitBit),
+                            LENGTH_SHORT).show();
                     OnClickTeachFragmentListener listener = (OnClickTeachFragmentListener) getActivity();
                     listener.onClickTask();
                 }
                 else if(st.equals("spelling"))
                 {
+                    Toast.makeText(getContext(), "" +  getResources().getString(R.string.waitBit),
+                            LENGTH_SHORT).show();
                     OnClickTeachFragmentListener listener = (OnClickTeachFragmentListener) getActivity();
                     listener.onClickTask();
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "Нечего не выбрано",
+                    Toast.makeText(getContext(), "" +  getResources().getString(R.string.nothingSelected),
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -196,8 +202,3 @@ public class TeachFragment extends Fragment  {
 
 
 }
-
-
-
-//                String selectedLevel = listLevel.get(position);
-//                MainActivity.setLevel(selectedLevel);
