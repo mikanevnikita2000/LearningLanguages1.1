@@ -31,4 +31,6 @@
     <string name="setting">Настройки</string>
     <string name="languageSelection">Выбор языка</string>
     <string name="choosingTheme">Выбор темы</string>
+    <string name="light_theme">Светлая тема</string>
+    <string name="dark_theme">Тёмная тема</string>
 </resources>

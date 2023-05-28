@@ -20,7 +20,8 @@ import java.util.Locale;
 
 public class SettingFragment extends Fragment {
 
-    private boolean isFirstTime = true;
+    private boolean isFirstTime1 = true;
+    private boolean isFirstTime2 = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,11 +59,11 @@ public class SettingFragment extends Fragment {
         spinnerLanguageSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!isFirstTime) {
+                if (!isFirstTime1) {
                     String languageCode = supportedLanguages[position];
                     updateLocale(languageCode);
                 } else {
-                    isFirstTime = false;
+                    isFirstTime1 = false;
                 }
             }
 
@@ -70,6 +71,8 @@ public class SettingFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
 
         return returnView;
     }

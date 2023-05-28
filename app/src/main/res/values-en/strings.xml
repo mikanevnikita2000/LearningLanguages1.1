@@ -31,4 +31,6 @@
     <string name="setting">Setting</string>
     <string name="languageSelection">Language Selection</string>
     <string name="choosingTheme">Choosing a theme</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark Theme</string>
 </resources>

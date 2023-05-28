@@ -66,15 +66,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline28" />
 
-        <Spinner
-            android:id="@+id/spinnerChoosingTheme"
-            android:layout_width="190dp"
-            android:layout_height="27dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline22"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline29" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline28"
             android:layout_width="wrap_content"
@@ -98,16 +89,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="300dp" />
-
-        <TextView
-            android:id="@+id/choosingTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/choosingTheme"
-            app:layout_constraintBottom_toTopOf="@+id/guideline29"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline21" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
