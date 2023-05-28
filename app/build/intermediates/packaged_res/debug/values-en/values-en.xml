@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addAdd">Add</string>
+    <string name="addStart">Add</string>
+    <string name="addWord">Add a word</string>
+    <string name="app_name">LearningLanguages1.0</string>
+    <string name="choosingTheme">Choosing a theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="difficultyLevel">Difficulty level</string>
+    <string name="exit">Exit</string>
+    <string name="falseAnswer">Wrong</string>
+    <string name="language">Language</string>
+    <string name="languageSelection">Language Selection</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="nextTask">Next task</string>
+    <string name="nothingSelected">Nothing is selected</string>
+    <string name="questionSpelling">Write the word correctly:</string>
+    <string name="questionTranslation">Translate the word:</string>
+    <string name="setting">Setting</string>
+    <string name="settingQuestions">Setting up Questions</string>
+    <string name="settings">Settings</string>
+    <string name="spelling">Spelling</string>
+    <string name="start">To begin</string>
+    <string name="task">Task</string>
+    <string name="teach">Teach</string>
+    <string name="translationAdd">Translation</string>
+    <string name="translationTeach">Translation</string>
+    <string name="trueAnswer">Correctly</string>
+    <string name="waitBit">Nothing is selected</string>
+    <string name="welcome">Welcome</string>
+    <string name="word">Word</string>
+</resources>
